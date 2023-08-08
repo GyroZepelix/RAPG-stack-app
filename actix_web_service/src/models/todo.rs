@@ -13,18 +13,22 @@ pub struct Todo {
     pub description: Option<String>,
     pub created_at: Option<NaiveDateTime>,
     pub updated_at: Option<NaiveDateTime>,
+    pub user_id: String,
 }
 
 impl Todo{
-    pub fn new(title: String, description: Option<String>) -> Self {
+    pub fn new(user_id: String, title: String, description: Option<String>) -> Self {
         Self {
             id: "".to_string(),
             title,
             description,
             created_at: None,
             updated_at: None,
+            user_id
         }
     }
 }
+
+
 
 

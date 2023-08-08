@@ -19,7 +19,7 @@ use crate::controller::graphql::{create_schema};
 async fn main() -> io::Result<()>{
     let db = Database::new();
     let database_data = Data::new(db);
-    let graphql_schema = create_schema(database_data.clone());
+    let graphql_schema = create_schema();
     let schema_data = Data::new(graphql_schema);
 
     dotenv().ok();

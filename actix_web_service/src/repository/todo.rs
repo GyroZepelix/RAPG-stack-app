@@ -1,8 +1,9 @@
 use chrono::Utc;
-use diesel::{QueryDsl, QueryResult, RunQueryDsl};
+use diesel::{ExpressionMethods, QueryDsl, QueryResult, RunQueryDsl};
 use crate::models::todo::Todo;
 use crate::repository::database::Database;
 use crate::repository::diesel_schema::todos::dsl::todos;
+use crate::repository::diesel_schema::todos::user_id;
 use crate::utils::usize_wrapper::UsizeWrapper;
 
 impl Database {
@@ -28,6 +29,12 @@ impl Database {
         todos.find(todo_id)
             .get_result(&mut self.pool.get().expect("get database"))
     }
+
+    pub fn get_todos_by_user_id(&self, id: &str) -> QueryResult<Vec<Todo>> {
+        todos.filter(user_id.eq(id))
+            .get_results(&mut self.pool.get().expect("get database"))
+    }
+
 
     pub fn delete_todo_by_id(&self, todo_id: &str) -> QueryResult<UsizeWrapper> {
         diesel::delete(todos.find(todo_id))
