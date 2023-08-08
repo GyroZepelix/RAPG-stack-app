@@ -5,7 +5,7 @@ use crate::repository::database::Database;
 
 #[get("/todos")]
 pub async fn get_todos(db: web::Data<Database>) -> HttpResponse {
-    let todos = db.get_todos();
+    let todos = db.get_todos().unwrap();
     HttpResponse::Ok().json(todos)
 }
 
@@ -13,8 +13,8 @@ pub async fn get_todos(db: web::Data<Database>) -> HttpResponse {
 pub async fn get_todo_by_id(db: web::Data<Database>, id: web::Path<String>) -> HttpResponse {
     let todo = db.get_todo_by_id(&id);
     match todo {
-        Some(todo) => HttpResponse::Ok().json(todo),
-        None => HttpResponse::NotFound().body("Todo not found"),
+        Ok(todo) => HttpResponse::Ok().json(todo),
+        Err(_) => HttpResponse::NotFound().body("Todo not found"),
     }
 }
 
@@ -37,11 +37,11 @@ pub async fn update_todo_by_id(db: web::Data<Database>, id: web::Path<String>, u
 }
 
 #[delete("/todos/{id}")]
-pub async fn delete_todo_by_id(db: web::Data<Database>, id: web::Path<String>) -> HttpResponse {
+pub async fn delete_todo_by_id(db: Data<Database>, id: web::Path<String>) -> HttpResponse {
     let todo = db.delete_todo_by_id(&id);
     match todo {
-        Some(todo) => HttpResponse::Ok().json(todo),
-        None => HttpResponse::NotFound().body("Todo not found"),
+        Ok(todo) => HttpResponse::Ok().json(todo),
+        Err(_) => HttpResponse::NotFound().body("Todo not found"),
     }
 }
 

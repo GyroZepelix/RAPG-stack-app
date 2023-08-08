@@ -6,15 +6,16 @@ edition = "2021"
 
 [dependencies]
 actix-web = "^4"
+actix-web-lab = "0.19.1"
+actix-cors = "0.6.4"
 env_logger = "0.10.0"
 log = "0.4.14"
 uuid = { version = "1.4.1", features = ["v4"] }
 serde = { version = "1.0.130", features = ["derive"] }
-#strum_macros = "0.25.1"
-#strum = { version = "0.25.0", features = ["derive"] }
 derive_more = "0.99.11"
 dotenv = "0.15.0"
 diesel = { version = "2.0.3", features = ["postgres", "r2d2", "chrono", "uuid"] }
 chrono = { version = "0.4.26", features = ["serde"] }
+juniper = "0.15.11"
 
 
