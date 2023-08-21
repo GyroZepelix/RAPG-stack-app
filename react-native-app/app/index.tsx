@@ -8,12 +8,15 @@ import {center} from "../constants/commonStyles";
 import {gql, useQuery} from "@apollo/client";
 import MonoButton from "../components/MonoButton";
 import {User} from "../interfaces/User";
-import {EnrichedQueryResult, EnrichedQueryResults} from "../interfaces/EnrichedQueryResult";
+import {EnrichedQueryResults} from "../interfaces/EnrichedQueryResult";
 import HorizontalLine from "../components/HorizontalLine";
 import {router} from "expo-router";
 import AddButton from "../components/AddButton";
 
+
 export default function Page() {
+
+
 
     const users: EnrichedQueryResults<User, "users", "username" | "id"> = useQuery(gql`
         query {

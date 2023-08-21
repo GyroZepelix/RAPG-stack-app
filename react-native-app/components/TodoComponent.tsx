@@ -2,16 +2,18 @@ import {Text, TextStyle, View, ViewStyle} from "react-native";
 import {FC} from "react";
 import Colors from "../constants/Colors";
 import HorizontalLine from "./HorizontalLine";
+import {format, formatDistance, formatRelative} from 'date-fns'
 
 type Props = {
     title: string,
     description?: string,
     style?: ViewStyle,
-    updatedAt?: number,
+    updatedAt?: string,
 }
 
 const TodoComponent: FC<Props> = ({title, description, style, updatedAt}) => {
     const time = new Date(updatedAt)
+    console.log(updatedAt, time, new Date().getTime())
 
     return (
         <View style={{...TodoComponentStyle, ...style}}>
@@ -21,11 +23,10 @@ const TodoComponent: FC<Props> = ({title, description, style, updatedAt}) => {
                     <>
                         <HorizontalLine height={2} color={Colors.tertiary}/>
                         <Text style={DescriptionStyle}>{description}</Text>
-                        <Text style={{...DescriptionStyle, textAlign: "right"}}>{time.getDate()}</Text>
                     </>
                 )
             }
-
+            <Text style={{...TimeStyle}}>{formatDistance(time, new Date())}</Text>
         </View>
     )
 }
@@ -51,4 +52,11 @@ const TitleStyle: TextStyle = {
 const DescriptionStyle: TextStyle = {
     fontSize: 15,
     marginTop: 5,
+}
+
+const TimeStyle: TextStyle = {
+    fontSize: 12,
+    textAlign: "right",
+    marginTop: 5,
+    fontStyle: "italic",
 }
