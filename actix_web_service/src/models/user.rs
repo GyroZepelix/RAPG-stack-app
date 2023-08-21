@@ -1,11 +1,8 @@
-use actix_web::web::Data;
 use chrono::NaiveDateTime;
 use diesel::{AsChangeset, Insertable, Queryable};
-use juniper::GraphQLObject;
 use serde::{Deserialize, Serialize};
 use crate::controller::graphql::Context;
 use crate::models::todo::Todo;
-use crate::repository::database::Database;
 
 
 #[derive(Serialize, Deserialize, Debug, Clone, Queryable, Insertable, AsChangeset)]
