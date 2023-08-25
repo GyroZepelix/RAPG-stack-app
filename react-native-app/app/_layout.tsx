@@ -10,7 +10,7 @@ const client = new ApolloClient({
 
 const Page = () => {
 
-    return (
+return (
         <ApolloProvider client={client}>
             <Slot />
         </ApolloProvider>

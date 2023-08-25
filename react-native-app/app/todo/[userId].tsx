@@ -12,36 +12,13 @@ import TodoComponent from "../../components/TodoComponent";
 import Todo from "../../interfaces/Todo";
 import AddButton from "../../components/AddButton";
 import ObjectForm from "../../components/ObjectForm";
-import MutateTodo from "../../interfaces/MutateTodo";
+import {ADD_TODO, GET_USER_BY_ID} from "../../utils/graphql_queries";
 
-const ADD_TODO = gql`
-    mutation AddTodo($title: String!, $description: String, $userId: String!) {
-        createTodo( title: $title, description: $description, userId: $userId ) {
-            title
-            description
-            updatedAt
-        }
-    }
-`
 
-const GET_USER_BY_ID = gql`
-    query GetUserById($id: String!) {
-        user(id: $id) {
-            username
-            todos {
-                id
-                title
-                description
-                updatedAt
-            }
-        }
-    }
-    `
 
 const Page = () => {
 
 
-    const drawer = useRef<DrawerLayout>(null);
     const [addingTodo, setAddingTodo] = useState<boolean>(false);
     const { userId } = useLocalSearchParams();
 
@@ -94,6 +71,7 @@ const Page = () => {
                 <View style={{marginTop: 35, marginBottom: 10}}>
                     <Text style={{fontSize: 25, fontWeight: "bold"}}>TODO</Text>
                     <AddButton style={{position: "absolute", right: -120, bottom: 7}} onPress={onTodoAdd}/>
+                    <AddButton style={{position: "absolute", right: 120, bottom: 7}} onPress={() => user.refetch()}/>
                     <Text style={{fontSize: 20, fontWeight: "500", textAlign: "center", textTransform: "capitalize"}}>{user.loading || user.data.user.username}</Text>
                 </View>
                 <View style={TodoViewStyle}>

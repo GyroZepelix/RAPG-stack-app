@@ -2,8 +2,7 @@ import Todo from "./Todo";
 
 export interface User {
     id: string;
-    username: string;
-    email: string;
+    44
     created_at?: string;
 }
 

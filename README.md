@@ -58,7 +58,7 @@ I created this app to test out and learn the following *Fullstack* technologies:
     ```
 3. Inside the `.env` file, change the `EXPO_PUBLIC_BASE_URL` to the IP address of your machine.
     ```
-    EXPO_PUBLIC_BASE_URL=http://<YOUR_IP_ADDRESS>:8080
+    EXPO_PUBLIC_BASE_URL=http://<BACKEND_IP_ADRESS>:8080
     ```
 4. Run the following command to start the app:
     ```
