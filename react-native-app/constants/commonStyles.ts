@@ -1,7 +1,7 @@
-import {StyleProp} from "react-native";
+import {StyleProp, ViewStyle} from "react-native";
 
-const center: StyleProp<any> = {
-    flex: 1,
+const center: ViewStyle = {
+    display: "flex",
     justifyContent: "center",
     alignItems: "center"
 }
